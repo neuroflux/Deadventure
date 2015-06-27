@@ -1,0 +1,463 @@
+* { margin: 0; padding: 0; font-size: 18px; font-weight: 200; font-family: 'Roboto Condensed', cursive; }
+
+h1, h2, h3, h4 { 
+	text-shadow: 0px 0px 12px black;
+}
+
+@font-face {
+    font-family: 'demon_skerregular';
+    src: url('fonts/demon_sker.eot');
+    src: url('fonts/demon_sker.eot?#iefix') format('embedded-opentype'),
+         url('fonts/demon_sker.woff2') format('woff2'),
+         url('fonts/demon_sker.woff') format('woff'),
+         url('fonts/demon_sker.ttf') format('truetype'),
+         url('fonts/demon_sker.svg#demon_skerregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+input[type=button] {
+	background-color: #f4f4f4;
+	color: #111;
+	border: 1px solid #111;
+}
+input[type=button]:hover {
+	background-color: #111;
+	color: #f4f4f4;
+	border: 1px solid #f4f4f4;
+}	
+
+body {
+	background-color: #111;
+	color: #f4f4f4;
+	background-image: url(../img/bg.jpg);
+	background-attachment: fixed;
+	background-position: 0px 0px;
+	overflow-y:scroll;
+	min-width: 1280px;
+}
+#dead {
+	font-size: 256px;
+	color: #300000;
+	text-align: center;
+	text-shadow:
+	4px 4px 1px #300000,
+	4px 6px 1px #400000,
+	4px 8px 1px #500000,
+	4px 10px 1px #600000,
+	4px 12px 1px #700000,
+	4px 14px 1px #800000,
+	4px 16px 1px #900000,
+	4px 18px 1px #A00000,
+	4px 20px 1px #B00000,
+	4px 22px 1px #C00000,
+	4px 24px 1px #D00000,
+	4px 26px 1px #E00000,
+	4px 28px 1px #F00000,
+	4px 30px 1px #FA0000,
+	4px 32px 1px #FB0000,
+	4px 34px 1px #FC0000,
+	4px 36px 1px #FD0000,
+	4px 38px 1px #FE0000,
+	4px 40px 2px #FF0000;,
+	4px 40px 2px rgba(0,0,0,0.65);
+	font-family: 'demon_skerregular';
+}
+#score {
+	text-align: center;
+	width: 100%;
+	font-size: 64px;
+}
+.bar {
+	font-family: Arial;
+	font-size: 12px;
+	color: #111;
+	text-align: left;
+}
+.abar {
+	width: 80%;
+	font-size: 14px;
+	padding-top: 32px;
+	padding-left: 10%;
+	display:none;
+}
+#health {
+	width: 100%;
+	height: 15px;
+	margin-bottom: 12px;
+	margin-top: 6px;
+}
+#health .bar {
+	width: 0px;
+	height: 15px;
+	background-color: green;
+}
+#action {
+	width: 100%;
+	height: 15px;
+	margin-bottom: 12px;
+	margin-top: 6px;
+	background-image: url(../img/actionbar.png);
+}
+#action .bar {
+	width: 0px;
+	height: 15px;
+	background-image: url(../img/actionbar.jpg);
+}
+#hunger {
+	width: 100%;
+	height: 15px;
+	margin-bottom: 12px;
+	margin-top: 6px;
+}
+#hunger .bar {
+	width: 0px;
+	height: 15px;
+	background-color: lightgreen;
+}
+#thirst {
+	width: 100%;
+	height: 15px;
+	top: 50px;
+	margin-bottom: 12px;
+	margin-top: 6px;
+}
+#thirst .bar {
+	width: 0px;
+	height: 15px;
+	background-color: lightblue;
+}
+
+#container {
+	width: 100%;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	min-height: 600px;
+	position: relative;
+}
+
+h1 {
+	padding: 16px;
+	font-size: 64px;
+	font-family: 'Tillana', cursive;
+	text-shadow:#ccc 0 1px 0, #c9c9c9 0 2px 0, #bbb 0 3px 0, #b9b9b9 0 4px 0, #aaa 0 5px 0,rgba(0,0,0,.1) 0 6px 1px, rgba(0,0,0,.1) 0 0 5px, rgba(0,0,0,.3) 0 1px 3px, rgba(0,0,0,.15) 0 3px 5px, rgba(0,0,0,.2) 0 5px 10px, rgba(0,0,0,.2) 0 10px 10px, rgba(0,0,0,.1) 0 20px 20px;
+}
+.threedee {
+	text-shadow:#ccc 0 1px 0, #c9c9c9 0 2px 0, #bbb 0 3px 0, #b9b9b9 0 4px 0, #aaa 0 5px 0,rgba(0,0,0,.1) 0 6px 1px, rgba(0,0,0,.1) 0 0 5px, rgba(0,0,0,.3) 0 1px 3px, rgba(0,0,0,.15) 0 3px 5px, rgba(0,0,0,.2) 0 5px 10px, rgba(0,0,0,.2) 0 10px 10px, rgba(0,0,0,.1) 0 20px 20px;
+}
+h1 sup {
+	font-family: 'Tillana', cursive;
+	text-shadow:none;
+	padding-left: 16px;
+}
+h2 {
+	padding-left: 16px;
+	font-size: 20px;
+}
+#quotes {
+	font-style: italic;
+}
+h3 {
+	padding-bottom: 32px;
+	text-align: center;
+}
+#center-wrapper  h3 {
+	padding-left: 16px;
+	font-size: 20px;
+	padding-bottom: 0px;
+	text-align: left;
+}
+
+#buttons {
+	padding-left: 16px;
+	margin-top: 16px;
+	padding-bottom: 32px;
+}
+#buttons input {
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-top: 16px;
+}
+.awareness {
+	font-size: 28px;
+}
+a { color: lightblue; }
+a:hover { color: orange; }
+.search {
+	cursor: pointer;
+	height: 64px;
+	width: 90px;
+	font-size: 16px;
+}
+#clicks {
+	font-size: 14px;
+	width: 80%;
+	display: none;
+	padding-left: 10%;
+	color: #f4f4f4;
+	border: 0px solid black;
+	cursor: default;
+}
+#clicks h3 {
+	padding-top: 32px;
+}
+#clicks span {
+	font-size: 14px;
+	float: left;
+}
+#randomFace { cursor: pointer; }
+#randomFace:hover { opacity: 0.75; }
+p { padding: 16px; z-index: 1000; }
+#name {
+	margin-left: 0px;
+	width: 70%;
+	padding: 6px;
+	height: 48px;
+	margin-bottom: 8px;
+	font-size: 22px;
+}
+#playme,#load { margin-left: 48px; padding-left: 32px; padding-right: 32px; height: 80px;}
+#output li {
+	padding-left: 16px;
+	padding-top: 2px;
+	padding-bottom: 0px;
+	line-height: 35px;
+}
+.zombiesound {
+    font-family: 'demon_skerregular';
+	font-size: 64px;
+	position: fixed;
+	left: 75%;
+	top: 32px;
+	z-index:9999;
+}
+.inventoryitem {
+	padding-left: 8px;
+	padding-right: 32px;
+	width: auto;
+}
+.item, .inventoryitem, .discard {
+	display: block;
+	display: inline-block;
+	margin: 4px;
+	padding-left: 4px;
+	width: auto;
+	text-align: center;
+	border: 1px solid lightgreen;
+	cursor: pointer;
+}
+.discard {
+	background-color: darkred;
+	margin-left: -10px;
+}
+.discard:hover {
+	background-color: #f4f4f4;
+	color: black !important;
+}
+.item:hover, .inventoryitem:hover {
+	background-color: lightgreen;
+	color: #111;
+}
+
+#play { display:none; }
+
+.bubble  {
+	margin-left: 10%
+	position: relative;
+	width: 80%;
+	min-height: 60;
+	z-index: 999;
+	padding: 1px;
+	background: #111;
+	-webkit-border-radius: 27px;
+	-moz-border-radius: 27px;
+	border-radius: 27px;
+	border: #666 solid 4px;
+	list-style-type: none;
+	margin-bottom: 16px;
+}
+
+
+.bubble:before  {
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 13px 18px 13px 0;
+	border-color: transparent #666;
+	display: block;
+	width: 0;
+	z-index: 0;
+	left: -16px; 
+	top: 6px;
+}
+
+#left-wrapper {
+	float: left;
+	width: 19%;
+	min-width: 200px;
+	overflow: hidden;
+	opacity: 0.0;
+	height: 700px;
+	background-color: rgba(64,64,64,0.75);
+}
+#center-wrapper {
+	float: left;
+	width: 55%;
+	min-width: 685px;
+	min-height: 700px;
+	padding-left: 2%;
+	padding-right: 2%;	
+	overflow: hidden;
+}
+#right-wrapper {
+	float: right;
+	margin-right: 10px;
+	width: 18%;
+	overflow: hidden;
+	opacity: 0.0;
+	height: 700px;
+	background-color: rgba(64,64,64,0.75);
+}
+.vBar {
+	height: 10px;
+	margin-bottom: 12px;
+	margin-top: 6px;
+}
+.vBar .bar {
+	font-family:Arial;
+	color: #f4f4f4;
+	height: 30px !important;
+	border-right: 1px solid #f4f4f;
+}
+#strengthXP {
+	background-color: lightblue;
+}
+#dexterityXP {
+	background-color: gold;
+}
+#healingXP {
+	background-color: lightgreen;
+}
+#stealthXP {
+	background-color: brown;
+}
+#searchXP {
+	background-color: darkred;
+}
+#speedXP {
+	background-color: darkblue;
+}
+#character {
+	position: fixed;
+	left: 150px;
+	top: 350px;
+}
+.black_overlay{
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:988;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+.white_content {
+	display: none;
+	position: absolute;
+	top: 20%;
+	left: 25%;
+	width: 50%;
+	height: 66%;
+	padding: 16px;
+	border: 8px solid #f4f4f4;
+	border-radius: 16px;
+	background-color: #000;
+	z-index:1002;
+	overflow: auto;
+}
+a { text-decoration: none; }
+span.enemyhp {
+	font-size: 48px;
+}
+h2 span {
+	font-size: 48px;
+}
+#result {
+	font-size: 32px;
+	color: orange;
+	height: 36px;
+}
+.fightbutton {
+	font-size: 32px;
+	color: #f4f4f4;
+	text-align: center;
+}
+.fightbutton:hover {
+	opacity: 0.65;
+}
+.runbutton {
+	font-size: 32px;
+	color: #f4f4f4;
+	text-align: center;
+}
+.runbutton:hover {
+	opacity: 0.65;
+}
+.weight {
+	display: block;
+	width: 100%;
+}
+#clicks span.alertness .awareness {
+	font-size: 32px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#redditlink {
+	display:block;
+	position: absolute;
+	z-index: 10000;
+	right:0px;
+	top:0px;
+}
+#redditlink:hover {
+	opacity: 0.5;
+}
+input {
+	border-radius: 8px;
+}
+#locName {
+	border-radius: 8px;
+}
+#path li {
+	
+}
+#play h2, #play h3 {
+	width: 45%;
+}
+.masterTooltip {
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.tooltip {
+	display:none;
+	position:absolute;
+	border:2px solid #f4f4f4;
+	background-color:#161616;
+	border-radius:8px;
+	padding:10px;
+	color:#fff;
+	font-size:14px;
+}
+.difficulty {
+	width: 200px;
+	margin-top: 4px;
+}
+.difficulty.selected {
+	background-color: red;
+	color: #f4f4f4
+}

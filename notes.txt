@@ -1,6 +1,3 @@
-# Deadventure
-Deadventure - Incremental/Semi-Idle casual game thing
-
 Deadventure - Notes for version 0.6 Alpha:
 
 --- NEW UPDATES ---

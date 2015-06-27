@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Deadventure - A Text Free Roam Adventure</title>
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Tillana' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/animate.css" type="text/css" />
+		<link rel="stylesheet" href="css/screen.css" type="text/css" />
+	</head>
+	<body>
+		<!-- lightbox -->
+		<div id="light" style="background-color: transparent; text-align: center; font-size: 48px; padding:0px; border: 0px solid white;" class="pause white_content">
+			<h2 style="font-size: 48px;" class="threedee">PAUSED GAME!</h2>
+			<a style="font-size: 48px;text-decoration: underline; padding-top: 32px;" href="#" id="unpause">Continue?</a>
+		</div>
+		<div id="light" class="white_content">
+			<h2>YOUR HEALTH</h2>
+			<div id="health"><div class="bar"></div></div>
+			<h2 style="text-align: center; font-size: 36px;">Attacking: <span></span><br />
+			<h2 style="text-align: center; font-size: 36px;">Using: <span id="attackingweapon">Fists</span><br />
+			Targets Health: <span class="enemyhp"></span>hp</h2>
+			<a href="#" class="fightbutton attack" style="margin-left: 128px;color: red; float: left;">Attack!<br /><img src="img/attack.png" width="128" /></a>
+			<a href="#" class="fightbutton defend" style="color: lightgreen; float: left;">Defend!<br /><img src="img/defend.png" width="128" /></a>
+			<a href="#" class="runbutton retreat" style="color: lightblue; float: left;">Retreat!<br /><img src="img/retreat.png" width="128" /></a>
+			<center style="clear:both;">
+				<div id="result"></div>
+			</center>
+		</div>
+		<div id="fade" class="black_overlay"></div>
+		<!-- content -->
+		<a id="redditlink" href="http://www.reddit.com/r/deadventure" target="_blank"><img src="img/reddit.png" width="64" /></a>
+		<div style="width:1280px;">
+			<div id="left-wrapper">
+				<div class="abar">
+					<h3><span id="playername">Bob</span>'s Information:</h3>
+					Current Action:
+					<div id="action"><div class="bar"></div></div>
+					Health:
+					<div id="health"><div class="bar"></div></div>
+					Hunger:
+					<div id="hunger"><div class="bar"></div></div>
+					Thirst:
+					<div id="thirst"><div class="bar"></div></div>
+				</div>
+				<div class="abar">
+					<h3>Experience:</h3>
+					<span class="masterTooltip" title="The higher your strength the more you can carry, a side effect is that you can swing an axe like no one else">Strength:</span>
+					<div class="vBar" id="strengthXP"><div class="bar"></div></div>
+					<span class="masterTooltip" title="This skill improves your movement speed when travelling and your searching speeds">Dexterity:</span>
+					<div class="vBar" id="dexterityXP"><div class="bar"></div></div>
+					<span class="masterTooltip" title="The higher this skill the better you heal!">Healing:</span>
+					<div class="vBar" id="healingXP"><div class="bar"></div></div>
+					<span class="masterTooltip" title="This lowers the zombie encounters by a percentage">Stealth:</span>
+					<div class="vBar" id="stealthXP"><div class="bar"></div></div>
+					<span class="masterTooltip" title="The higher this skill, the more items you can find in a search">Searching:</span>
+					<div class="vBar" id="searchXP"><div class="bar"></div></div>
+					<span class="masterTooltip" title="This skill affects your travelling speed, defensive skill and searching speed">Speed:</span>
+					<div class="vBar" id="speedXP"><div class="bar"></div></div>
+				</div>
+			</div>
+			<div id="center-wrapper">
+				<div id="donate" style="width: 100%; text-align: center; background-color: darkred; padding-top: 4px; padding-bottom: 4px;">If you like the game and want to see it developed quicker, please consider donating Bitcoins: 165ZVBPsbr2xMZSjJSw6fjuL7pmW8qPPSA <a href="#" onclick="$('#donate').remove(); return false;" style="float: right; margin-right: 8px;">X</a><br /></div>
+				<!--required-->
+				<div id="container">
+					<h1 align="center"></h1>
+					<p align="center" style="margin-top: -32px;" id="quote"></p>					
+					<p>
+						<center><a href="notes.txt" target="_blank" style="text-decoration:underline;">CHECK OUT WHAT'S NEW HERE!</a></center><br />
+						<span class="remove">1. Choose Name and Picture:<br /></span>
+						<input type="text" id="name" value="" style="text-align: left;" placeholder="Enter Character Name..." />
+						
+						
+						<input type="button" name="male" class="search randomname" style="height: 66px; margin-left: 0px; width: 80px; padding: 0px;" value="Male" />
+						<input type="button" name="female" class="search randomname" style="height: 66px; margin-left: 0px; width: 80px; padding: 0px;" value="Female" /><br /><br />
+						
+						<!--div id="randomFace" style="width:80px; height: 64px; overflow: hidden; background-image: url(img/faces.jpg); border-radius: 6px;"></div-->
+						
+						<span class="remove">2. Choose Difficulty (This denotes how far you can run from zombies):<br /></span>
+						<input type="button" class="search difficulty" name="easy" style="height: 66px; margin-left: 0px; padding: 0px;" id="easymode" value="Easy" />
+						<input type="button" class="search difficulty selected" name="medium" style="height: 66px; margin-left: 0px; padding: 0px;" id="mediummode" value="Medium" />
+						<input type="button" class="search difficulty" name="hard" style="height: 66px; margin-left: 0px; padding: 0px;" id="hardmode" value="Hard" />
+						<span class="remove"><br /><br /></span>
+						
+						<span class="remove">3. Start The Game:<br /></span>
+						<input type="button" class="search" id="playme" style="width: auto; height: 66px; margin-left: 0px; padding: 0px;" value="   Start New Game   " />
+						<input type="button" class="search" style="height: 66px; margin-left: 0px; padding: 0px; width: auto;" id="load" value="   Resume Saved Game   " />
+						<input type="button" class="search" style="width: auto; height: 66px; margin-left: 0px; padding: 0px;" id="delete" value="   Delete Saved Game   " />
+						<span class="remove"><br /><br /></span>
+						
+						<span class="remove">
+							<a href="php/scoretable.php" target="_blank" style="text-decoration:underline;">Click here for Hi-Scores</a></sub><br />
+							<sub style="color: orange;">Minimum Resolution: 1280x720<br />
+							THIS VERSION DOES NOT WORK IN INTERNET EXPLORER<br />
+							A total of approx. 24 hours work so far.<br />
+							Bug reports: <a href="http://reddit.com/r/deadventure" target="_blank">http://reddit.com/r/deadventure</a><br />
+							GitHub Repo: <a href="https://github.com/neuroflux/Deadventure" target="_blank">https://github.com/neuroflux/Deadventure</a><br /><br /></sub>
+							<hr>
+							<p>Beginners Tips:<br />
+							1) Faster searches will be louder while slower ones will be quieter.<br />
+							2) Make too much noise or lurk around too long and you'll get attacked.<br />
+							4) Search an area until depleated of loot, you might find something nice!<br />
+							5) Keep an eye on the zombie prooximity! Don't get caught with your paints down...<br />
+							6) Remember to equip your weapon... Too many times I've forgotten...<br />
+							7) You gain health by resting, but it makes your hunger and thirst bars go down.<br />
+							8) You can "out run" the horde following you by travelling around a lot.<br />
+							9) It takes up to 50 actions to level up a certain skill.<br />
+							10) The faster the zombie, the more mean it is. Don't be afraid to run away (if you can). Zombies are easier at the beginning of the game.<br />
+						</p>
+					</span>
+					<div id="play">
+						<h2>You are at the <em style="color: orange;"></em></h2>
+						<img src="" height="240" width="320" style="margin-top: -24px; float: right;" id="locName" />
+						<h3><em></em></h3>
+						<div id="buttons">
+							<input type="button" class="search masterTooltip" title="Slow and quiet!" id="slow" value="Slow search" />
+							<input type="button" class="search masterTooltip" title="Fast but loud!" id="fast" value="Fast search" />
+							<input type="button" class="search" id="inventory" value="Inventory" />
+							<input type="button" class="search masterTooltip" title="Rest and heal" id="rest" value=" Rest " />
+							<input type="button" class="search" id="travel" value="Travel" />
+							<input type="button" class="search" id="craft" style="background-color: red; color: white;" value="Craft" />
+							<br />
+							<input type="button" class="search" id="sneak" value="  Sneak  " />
+							<input type="button" class="search" id="pause" value="  Pause  " />
+							<input type="button" class="search" id="save" value="  Save  " />
+						</div>
+						<ul id="output"></ul>
+					</div>
+				</div>
+				<!--required-->
+			</div>
+			<div id="right-wrapper">
+				<div class="clicks" id="clicks">
+					<h3>Statistics:</h3>
+					Zombie Proximity:<br />
+					<center><span class="alertness"></span></center>
+					<br />
+					<span class="weight" style="width: 100%; height: 28px;">I can carry 0.0kg more</span><br /><br />
+					<span class="searches" style="width: 100%; height: 28px;">I have conducted 0 Searches</span><br />
+					<span class="distance" style="width: 100%; height: 28px;">I have travelled 0.0 Miles</span><br />
+					<span class="points" style="width: 100%; height: 28px;">I have 0 points</span>
+					<!--h3>My Path:</h3>
+					<ol id="path">
+					
+					</ol-->
+					<br /><br />
+					<a style="display: block; width: 100%; height: 64px;" href="http://reddit.com/r/deadventure">Deadventure on Reddit</a>
+				</div>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="js/seed.js"></script>
+		<script src="js/vars.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/events.js"></script>
+	</body>
+</html>
