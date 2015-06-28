@@ -1,8 +1,8 @@
 var Enemies = [
-	{ Name: "slow rotting zombie", Attack: 5, Defence: 1, Health: 15 }, //level 0
-	{ Name: "slow fresh zombie", Attack: 10, Defence: 2, Health: 20 }, //level 1
-	{ Name: "walking zombie", Attack: 20, Defence: 3, Health: 25 }, //level 2
-	{ Name: "sprinting zombie", Attack: 30, Defence: 4, Health: 30 } //level 3
+	{ Name: "slow rotting zombie", Attack: 7, Defence: 1, Health: 25 }, //level 0
+	{ Name: "slow fresh zombie", Attack: 10, Defence: 2, Health: 30 }, //level 1
+	{ Name: "walking zombie", Attack: 20, Defence: 3, Health: 40 }, //level 2
+	{ Name: "sprinting zombie", Attack: 30, Defence: 4, Health: 50 } //level 3
 ];
 
 var Craftables = [
@@ -105,24 +105,23 @@ var Descriptions = [
 
 var Items = [
 	{ Name: "tin can", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.2, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
-	{ Name: "empty bottle", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.2, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
 	{ Name: "newspaper", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.2, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
 	{ Name: "magazine", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.2, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
 	{ Name: "lighter", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
 	{ Name: "hairspray", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.4, Attack: 0, Exp: 0, Areas: "house,farm,other" },
 	{ Name: "nails", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.01, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
-	{ Name: "coins", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.2, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
-	{ Name: "tissue", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
+	{ Name: "coins", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.2, Attack: 0, Exp: 0, Areas: "all" },
+	{ Name: "tissue", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 0, Areas: "other" },
 	{ Name: "thimble", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
-	{ Name: "roll of tape", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
-	{ Name: "saftey pin", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 0, Areas: "house,farm,medical,other" },
+	{ Name: "roll of tape", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 0, Areas: "house,other" },
+	{ Name: "saftey pin", Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 0, Areas: "house,medical,other" },
 	
 	{ Name: "apple", Hunger: 25, Thirst: 25, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
 	{ Name: "dry noodles", Hunger: 35, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
-	{ Name: "walkers crisps", Hunger: 15, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
-	{ Name: "monster munch", Hunger: 15, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
-	{ Name: "haribo sweets", Hunger: 15, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
-	{ Name: "digestive biscuits", Hunger: 25, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
+	{ Name: "cheetos", Hunger: 15, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
+	{ Name: "snickers", Hunger: 15, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
+	{ Name: "chocolate", Hunger: 15, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
+	{ Name: "biscuits", Hunger: 25, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
 	{ Name: "some cake", Hunger: 50, Thirst: 1, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
 	{ Name: "banana", Hunger: 15, Thirst: 5, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
 	{ Name: "pear", Hunger: 25, Thirst: 15, Health: 0, Weight: 0.2, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
@@ -132,11 +131,11 @@ var Items = [
 	{ Name: "canned peaches", Hunger: 25, Thirst: 25, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
 	{ Name: "pepsi", Hunger: 5, Thirst: 65, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
 	{ Name: "coke", Hunger: 5, Thirst: 65, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
-	{ Name: "lilt", Hunger: 5, Thirst: 65, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
+	{ Name: "evian water", Hunger: 5, Thirst: 65, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
 	{ Name: "ribena", Hunger: 5, Thirst: 65, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
-	{ Name: "full water bottle", Hunger: 0, Thirst: 65, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
+	{ Name: "full water bottle", Hunger: 0, Thirst: 75, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
+	{ Name: "half full water bottle", Hunger: 0, Thirst: 35, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
 	{ Name: "iced tea", Hunger: 5, Thirst: 65, Health: 0, Weight: 0.3, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
-	{ Name: "water bottle", Hunger: 5, Thirst: 100, Health: 0, Weight: 0.4, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
 	{ Name: "pumpkin", Hunger: 45, Thirst: 15, Health: 0, Weight: 1.0, Attack: 0, Exp: 3, Areas: "house,farm,medical,other" },
 	
 	{ Name: "plasters", Hunger: 0, Thirst: 0, Health: 5, Weight: 0.1, Attack: 0, Exp: 1, Areas: "house,farm,medical,other" },
@@ -154,6 +153,8 @@ var Items = [
 	{ Name: "hatchet", Hunger: 0, Thirst: 0, Health: 0, Weight: 3.5, Attack: 3, Exp: 4, Areas: "farm" },
 	{ Name: "fire axe", Hunger: 0, Thirst: 0, Health: 0, Weight: 4, Attack: 4, Exp: 5, Areas: "farm" },
 	{ Name: "bow", Hunger: 0, Thirst: 0, Health: 0, Weight: 2, Attack: 3, Exp: 6, Areas: "farm" },
+	{ Name: "crowbar", Hunger: 0, Thirst: 0, Health: 0, Weight: 3, Attack: 2, Exp: 2, Areas: "building" },
+	{ Name: "police baton", Hunger: 0, Thirst: 0, Health: 0, Weight: 3, Attack: 3, Exp: 3, Areas: "police" },
 	
 	{ Name: "plastic bag", Container: 1, Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 6, Areas: "house,farm,medical,other" },
 	{ Name: "small backpack", Container: 3, Hunger: 0, Thirst: 0, Health: 0, Weight: 0.1, Attack: 0, Exp: 6, Areas: "house,farm,medical,other" },

@@ -1,9 +1,23 @@
 # Deadventure
 Deadventure - Incremental/Semi-Idle casual game thing
 
-Deadventure - Notes for version 0.6 Alpha:
+Deadventure - Notes for version 0.7 Alpha:
 
 --- NEW UPDATES ---
+
+  * BUGTRACKER and bug tracker link on game.
+  * Reversed: Thirst/Hunger bars and Proximity icons.
+  * Added maximum proximity above proximity icons.
+  * Loot is now tied to an area type - I.e. Crowbars are building sites and factories and police baton at police areas etc.
+  * New "found items" area stays on the right of the screen.
+  * Clicking an item no longer makes all items of that type disapear.
+  * Removed duplicate "travelled" text.
+  * Slow searches now yield more items and a greater chance of finding some.
+  * Better object detection when using an item (plus more descriptive actions).
+  * Removed empty water bottle and added half full bottle until water sources are implemented.
+  * Some minor CSS changes.
+  
+--- PREVIOUS UPDATES ---
 
   * Some small CSS layout amends.
   * Pausing actually pauses the hunger and thirst now! No more dying when paused.
@@ -16,9 +30,6 @@ Deadventure - Notes for version 0.6 Alpha:
   * The higher your stealth level the less likely the zombie proximity will go down.
   * Containers (such as backpacks) are now in and working, they all weight 0.1 but provide extra weight carrying. Currently you cannot take one off, only replace with a new one and the previous one is destroyed.
   * Added a GitHub repo for all to see my messy code.
-  
---- PREVIOUS UPDATES ---
-
   * Made the donate bar hideable. I don't want to force you to donate.
   * Pause function added for those times you get hungry in real life too.
   * Areas now show percentage chance of getting loot there.

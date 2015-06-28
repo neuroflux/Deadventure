@@ -261,20 +261,47 @@ p { padding: 16px; z-index: 1000; }
 
 #play { display:none; }
 
-.bubble  {
-	margin-left: 10%
+.areaitems  {
 	position: relative;
-	width: 80%;
+	width: 40%;
+	float: right;
+	min-height: 60;
+	z-index: 999;
+	padding: 8px;
+	list-style-type: none;
+}
+.bubble  {
+	position: relative;
+	width: 60%;
 	min-height: 60;
 	z-index: 999;
 	padding: 1px;
+	float: left;
 	background: #111;
 	-webkit-border-radius: 27px;
+	margin: 0px;
 	-moz-border-radius: 27px;
 	border-radius: 27px;
 	border: #666 solid 4px;
 	list-style-type: none;
 	margin-bottom: 16px;
+}
+.bubbleitem.item  {
+	position: absolute;
+	width: 225px;
+	min-height: 60;
+	z-index: 999;
+	margin: 0px;
+	padding: 16px;
+	float: right;
+	background: #111;
+	-webkit-border-radius: 27px;
+	-moz-border-radius: 27px;
+	margin-left: 48px;
+	border-radius: 27px;
+	border: #666 solid 4px;
+	list-style-type: none;
+	margin-top: 16px;
 }
 
 

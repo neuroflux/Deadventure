@@ -1,6 +1,6 @@
 /** some quick nasty global vars **/
 var GameName = "Deadventure";
-var GameVersion = "0.6a";
+var GameVersion = "0.7a";
 
 var TITLE = $('h1');
 var LOCATION = $('h2 em');
@@ -168,12 +168,12 @@ var Engine = {
 		var h = Player.Hunger;
 		if (h > 100) { h = 100; }
 		$('#hunger .bar').animate({
-			"width": h + "%"
+			"width": (100 - h) + "%"
 		}, 350);
 		var t = Player.Thirst;
 		if (t > 100) { t = 100; }
 		$('#thirst .bar').animate({
-			"width": t + "%"
+			"width": (100 - t) + "%"
 		}, 350);
 		if (h <= 0) { 
 			h = 0;
@@ -286,12 +286,19 @@ var Engine = {
 			if (Player.Inventory[id].Hunger > 0) {
 				Player.Hunger += Player.Inventory[id].Hunger;
 				var thisName = Player.Inventory[id].Name;
+				removeItem = true;
+				if (removeItem == true) {
+					Engine.Print("\"I've eaten " + thisName + "\"","lightgreen","left");
+				}
 			}
 			if (Player.Inventory[id].Thirst > 0) {
 				if (removeItem == false) {
 					Player.Thirst += Player.Inventory[id].Thirst;
 					var thisName = Player.Inventory[id].Name;
 					removeItem = true;
+					if (removeItem == true) {
+						Engine.Print("\"I've drank " + thisName + "\"","lightgreen","left");
+					}
 				}
 			}
 			if (Player.Inventory[id].Container > 0) {
@@ -300,10 +307,10 @@ var Engine = {
 					var thisName = Player.Inventory[id].Name;
 					Engine.UpdateWeight();
 					removeItem = true;
+					if (removeItem == true) {
+						Engine.Print("\"I'm using " + thisName + " for storage\"","lightgreen","left");
+					}
 				}
-			}
-			if (removeItem == true) {
-				Engine.Print("\"I've used " + thisName + "\"","lightgreen","left");
 			}
 			if (Player.Inventory[id].Health > 0) {
 				if (Player.Health < 100 && removeItem == false) {
@@ -312,7 +319,7 @@ var Engine = {
 					if (Player.Health > 100) { Player.Health = 100; }
 					if (removeItem == false) {
 						removeItem = true;
-						Engine.Print("\"I feel better having used " + thisName + " to patch myself up\"","lightgreen","left");
+						Engine.Print("\"I used " + thisName + " to patch myself up\"","lightgreen","left");
 						Player.Experience.Healing += 2;
 						Engine.CheckExperience();
 					}
@@ -330,9 +337,9 @@ var Engine = {
 					//$(LOCATION).html(areaName).after(" with the <em style='color:orange;'>" + Player.WeaponName + '</em>');
 				}
 		
-				Engine.Print("\"I've equipped my " + Player.Inventory[id].Name + ". It gives me +" + Player.Inventory[id].Attack + " attack!\"","lightgreen","left");
+				Engine.Print("\"I've equipped " + Player.Inventory[id].Name + ". It gives me +" + Player.Inventory[id].Attack + " attack!\"","lightgreen","left");
 			}
-			if (Player.Inventory[id].Hunger == 0 && Player.Inventory[id].Thirst == 0 && Player.Inventory[id].Health == 0 && Player.Inventory[id].Attack == 0 && Player.Inventory[id].Container == 0) {
+			if (removeItem == false && Player.Inventory[id].Attack == 0) {
 				Engine.Print("\"It's a " + Player.Inventory[id].Name + "\"","orange","left");
 			}
 			if (removeItem == true) {
@@ -435,7 +442,7 @@ var Engine = {
 				$('li').remove();
 				Player.Travelling = false;
 				Player.Distance += eval("0." + Math.floor(Math.random() * 4));
-				$('.distance').html("I have travelled " + Engine.Dec(Player.Distance) + ' Miles travelled');
+				$('.distance').html("I have travelled " + Engine.Dec(Player.Distance) + ' Miles');
 				Engine.Print("\"I've reach the destination.\"","lightgreen","left");
 				if (Player.Sneaking == true) {
 					Player.Experience.Stealth += 2;
@@ -462,24 +469,25 @@ var Engine = {
 	},
 	UpdateAlertness: function() {
 		$('.awareness').remove();
-		for (var a = 0; a < Player.Alerted; a++) {
+		$('.zedProx').html(Player.Awareness);
+		for (var a = 0; a < (Player.Awareness - Player.Alerted); a++) {
 			$('.alertness').append('<span class="awareness">&#9763;</span>');
 		}
-		if (Player.Alerted >= 4) {
-			$('.awareness').css('color','lightblue');
-		} else if (Player.Alerted == 3) {
-			$('.awareness').css('color','lightgreen');
-		} else if (Player.Alerted == 2) {
-			$('.awareness').css('color','orange');
-		} else if (Player.Alerted == 1) {
-			$('.awareness').css('color','red');
-		}
+		
+		$('.awareness').css('color','orange');
 	},
 	Print: function(text, colour, align) {
 		if (align) {
 			$(OUTPUT).prepend("<li class='bubble animated slideInLeft' style='text-align: " + align + "; color: " + colour + "'>" + text + "</li>");
 		} else {
 			$(OUTPUT).prepend("<li class='bubble animated slideInLeft' style='color: " + colour + "'>" + text + "</li>");
+		}
+	},
+	PrintItems: function(text, colour, align) {
+		if (align) {
+			$('.areaitems').prepend("<li class='bubbleitem item animated slideInRight' style='text-align: " + align + "; color: " + colour + "'>" + text + "</li>");
+		} else {
+			$('.areaitems').prepend("<li class='bubbleitem item animated slideInRight' style='color: " + colour + "'>" + text + "</li>");
 		}
 	},
 	Attacked: function(regen) {
@@ -605,37 +613,25 @@ var Engine = {
 			var r = Math.floor(Math.random() * 50) + 100;
 			var g = Math.floor(Math.random() * 50) + 100;
 			var b = Math.floor(Math.random() * 50) + 100;
-			var t = Math.floor(Math.random() * 8);
+			var t = Math.floor(Math.random() * 4);
 			var text = "";
 			switch(t) {
 				case 0:
-					text = "Groan";
+					text = "BANG!";
 					break;
 				case 1:
-					text = "Moan";
+					text = "CLATTER!";
 					break;
 				case 2:
-					text = "Creek";
+					text = "CREEEEK!";
 					break;
 				case 3:
-					text = "Shuffle";
-					break;
-				case 4:
-					text = "Scream";
-					break;
-				case 5:
-					text = "..BANG..";
-					break;
-				case 6:
-					text = "moaaan..";
-					break;
-				case 7:
-					text = "Ggrrgh..gh..";
-					break;
+					text = "BUMP!";
 					break;
 				default:
 					break;
 			}
+			Engine.Print("\"I made some noise and had to be quiet...\"", "red", "left");
 			$('body').prepend('<div class="zombiesound animated zoomIn" style="color: rgb(255,'+g+','+b+'); top: ' + y + 'px; left: ' + x + '%; transform:rotate(' + a + 'deg) scale(1.25);">' + text + '</div>');
 			Engine.UpdateAlertness();
 			$('.zombiesound').delay(2000).animate({
@@ -662,20 +658,6 @@ var Engine = {
 				alerted -= stealthy;
 				//console.log(alerted);
 				if (alerted > 65) {
-					var text = Math.floor(Math.random() * 3);
-					switch(text) {
-						case 0:
-							Engine.Print("\"What was that sound?!\"","red","left");
-							break;
-						case 1:
-							Engine.Print("\"Damn, that made me jump!\"","red","left");
-							break;
-						case 2:
-							Engine.Print("\"Christ, I hope that wasn't <em>them</em>...\"","red","left");
-							break;
-						default:
-							break;
-					}
 					Engine.AddSound(true);
 					Player.Searching = false;
 				} else {
@@ -752,24 +734,30 @@ var Engine = {
 		}
 		if (totalWeight + weight <= (Player.Strength + Player.Container)) {
 			$(ele).fadeOut(350);
-			if ($(ele).children('span').length < 1) {
-				if ($(ele).parent().children('.item').length > 1) {
-					$(ele).remove();
-				} else {
-					$(ele).parent().remove();
-				}
-			}
+			$(ele).remove();
 			Engine.Print("\"I've picked it up\"", "lightgreen");
 			Player.Inventory.push(Items[item]);
+			if ($('.item.mastertooltip').length < 1) {
+				$('.areaitems').html('');
+			}
 			Engine.UpdateWeight();
 		} else {
-			Engine.Print("\"The " + Items[item].Name + " is was heavy, now I'm carrying too much\"","red","left");
+			Engine.Print("\"The " + Items[item].Name + " is heavy, now I'm carrying too much\"","red","left");
 			Player.Encumbered = true;
 		}
 	},
 	FindItems: function(speed) {
+		$('.areaitems').html('');
+		var empty = false;
 		if (Player.Exploring == true && Player.Travelling == false) {
 			var chance = Math.floor(Math.random() * 100) - (5 * Player.Search);
+			if (speed == "slow") {
+				chance -= 25;
+			}
+			if (Player.Sneaking == true) {
+				chance -= 15;
+			}
+			//console.log(chance +" vs " + Areas[Player.Explored[Player.Explored.length-1]].LootChance);
 			if (chance < Areas[Player.Explored[Player.Explored.length-1]].LootChance) {
 				var howManyItems = Math.floor(Math.random() * 1);
 				howManyItems = 1 + Math.floor(Math.random() * Player.Search);
@@ -777,60 +765,68 @@ var Engine = {
 					howManyItems += Math.floor(Math.random() * 2);
 				}
 				var text  = "You found " + howManyItems + " items:<br />";
-					for (var i = 0; i < howManyItems; i++) {
-						Engine.Collectables.push(i);
-						var randomItem = Math.floor(Math.random() * Items.length);
-						var stats = "Weighs: " + Items[randomItem].Weight + ", ";
-						if (Items[randomItem].Hunger > 0) {
-							stats += "Hunger: " + Items[randomItem].Hunger + ", ";
-						}
-						if (Items[randomItem].Thirst > 0) {
-							stats += "Thirst: " + Items[randomItem].Thirst + ", ";
-						}
-						if (Items[randomItem].Health > 0) {
-							stats += "Health: " + Items[randomItem].Health + ", ";
-						}
-						if (Items[randomItem].Attack > 0) {
-							stats += "Attack: " + Items[randomItem].Attack + ", ";
-						}
-						
-						text += "<span class='item mastertooltip' title='" + stats + "' name='" + randomItem + "'>" + Items[randomItem].Name + " (" + Items[randomItem].Weight + "kg]" + "</span>";
+				for (var i = 0; i < howManyItems; i++) {
+					Engine.Collectables.push(i);
+					var randomItem = Math.floor(Math.random() * Items.length);
+					var stats = "Weighs: " + Items[randomItem].Weight + ", ";
+					if (Items[randomItem].Hunger > 0) {
+						stats += "Hunger: " + Items[randomItem].Hunger + ", ";
 					}
-				Engine.Print(text, "lightgreen","left");
-				$('.item').on('click', function() {
-					var ele = $(this);
-					var id = $(this).attr("name");
-					Engine.TakeItem(id, ele);
-					return false;
-				}).hover(function(){
-						// Hover over code
-						var title = $(this).attr('title');
-						$(this).data('tipText', title).removeAttr('title');
-						$('<p class="tooltip"></p>')
-						.text(title)
-						.appendTo('body')
-						.fadeIn('fast');
-				}, function() {
-						// Hover out code
-						$(this).attr('title', $(this).data('tipText'));
-						$('.tooltip').remove();
-				}).mousemove(function(e) {
-						var mousex = e.pageX + 20; //Get X coordinates
-						var mousey = e.pageY + 10; //Get Y coordinates
-						$('.tooltip')
-						.css({ top: mousey, left: mousex })
-				});
+					if (Items[randomItem].Thirst > 0) {
+						stats += "Thirst: " + Items[randomItem].Thirst + ", ";
+					}
+					if (Items[randomItem].Health > 0) {
+						stats += "Health: " + Items[randomItem].Health + ", ";
+					}
+					if (Items[randomItem].Attack > 0) {
+						stats += "Attack: " + Items[randomItem].Attack + ", ";
+					}
+					
+					text += "<span class='item mastertooltip' title='" + stats + "' name='" + randomItem + "'>" + Items[randomItem].Name + " (" + Items[randomItem].Weight + "kg]" + "</span>";
+				}
+				
+				var places = Items[randomItem].Areas;
+				var currentLocation = Player.Explored[Player.Explored.length-1];
+				if (places.indexOf(Areas[currentLocation].LootType) > -1 || places.indexOf("all") > -1) {
+					Engine.PrintItems(text, "lightgreen","left");
+					$('.item').on('click', function() {
+						var ele = $(this);
+						var id = $(this).attr("name");
+						Engine.TakeItem(id, ele);
+						return false;
+					}).hover(function(){
+							// Hover over code
+							var title = $(this).children('span.item').attr('title');
+							$(this).children('span.item').data('tipText', title).removeAttr('title');
+							$('<p class="tooltip"></p>')
+							.text(title)
+							.appendTo('body')
+							.fadeIn('fast');
+					}, function() {
+							// Hover out code
+							$(this).children('span.item').attr('title', $(this).children('span.item').data('tipText'));
+							$('.tooltip').remove();
+					}).mousemove(function(e) {
+							var mousex = e.pageX + 20; //Get X coordinates
+							var mousey = e.pageY + 10; //Get Y coordinates
+							$('.tooltip')
+							.css({ top: mousey, left: mousex })
+					});
+				} else {
+					Engine.FindItems(speed);
+				}
 			} else {
+				$('.areaitems').html('');
 				var text = Math.floor(Math.random() * 3);
 				switch(text) {
 					case 0:
-						Engine.Print("\"I couldn't find anything useful... Did I look everywhere?\"","orange","left");
+						Engine.PrintItems("\"Nope, I should keep looking...\"","orange","left");
 						break;
 					case 1:
-						Engine.Print("\"Nope, nothing yet...\"","orange","left");
+						Engine.PrintItems("\"Sigh.. Keep looking...\"","orange","left");
 						break;
 					case 2:
-						Engine.Print("\"I didn't find anything there, perhaps over there...?\"","orange","left");
+						Engine.PrintItems("\"Still nothing, keep looking...?\"","orange","left");
 						break;
 					default:
 						break;
@@ -838,12 +834,15 @@ var Engine = {
 			}
 			var endExploring = Math.floor(Math.random() * 100);
 			if (endExploring < Math.floor(25 / Player.Looting)) {
-				Player.Exploring = false;
-				$('#fast,#slow').css({
-					"background-color":"red",
-					"color":"white"
-				});
-				Engine.Print("\"I've searched everywhere, this place is empty\"","red","center");
+				if (empty == false) {
+					Player.Exploring = false;
+					$('#fast,#slow').css({
+						"background-color":"red",
+						"color":"white"
+					});
+					Engine.Print("\"This place is looted.\"","yellow","left");
+					empty = true;
+				}
 			}
 		}
 	},
